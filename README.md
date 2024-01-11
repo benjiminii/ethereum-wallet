@@ -1,4 +1,4 @@
-This is a [Next.js, Express, MongoDB](https://nextjs.org/) project bootstrapped with
+This is a Next.js, Express, MongoDB project.
 
 First, install the dependancies.
 I used "bun" but any other runtime will work.
@@ -17,7 +17,7 @@ bun run frontend
 bun run backend
 ```
 
-I know it is a bad idea to leave you .env variables. But if it seems not be working please use these variables or contact me.
+I know it is a bad idea to leave you .env variables. But if it seems not be working please use these variables in the backend or contact me.
 
 ```bash
 PORT=5555
