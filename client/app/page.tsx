@@ -1,6 +1,8 @@
 import classNames from "classnames";
 import Image from "next/image";
-import { Header, HeroSection } from "@/components";
+
+import backgroundImage from "@/public/background.png";
+import { Header, HeroSection, UserModal } from "@/components";
 
 export default function Home() {
   return (
@@ -9,19 +11,18 @@ export default function Home() {
         "flex min-h-screen flex-col items-center overflow-clip relative"
       )}
     >
+      {/* Web header component */}
       <Header />
       <HeroSection />
+      <UserModal />
       {/* Displaying a background image */}
-      {/* <div className="absolute"> */}
       <Image
-        src="/background.png"
+        src={backgroundImage.src}
         alt="Background Image"
         layout="fill"
         objectFit="cover"
         objectPosition="center"
-        className="absolute"
       />
-      {/* </div> */}
     </main>
   );
 }

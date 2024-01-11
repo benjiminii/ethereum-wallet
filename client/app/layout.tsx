@@ -9,8 +9,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Etheruem Wallet",
-  description: "benjiminii etheruem wallet",
+  title: "Ethereum Wallet",
+  description: "benjiminii ethereum wallet",
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-black">
+    <html lang="en" className="bg-black" data-theme="light">
       <body className={roboto.className}>{children}</body>
     </html>
   );

@@ -14,9 +14,9 @@ function HeroSection() {
       whileInView="onscreen"
       variants={scrollAnimation}
     >
-      <div className="self-center text-[70px] md:text-[100px] text-[#F2F2F2] top-0">
-        <h1 className="relative top-7 md:top-10 text-center">Connect To</h1>
-        <h1 className="relative bottom-7 md:bottom-10 text-center">
+      <div className="self-center text-[70px] md:text-[100px] text-[#F2F2F2]">
+        <h1 className="relative top-6 md:top-9 text-center">Connect To</h1>
+        <h1 className="relative bottom-6 md:bottom-9 text-center">
           The Future.
         </h1>
       </div>
