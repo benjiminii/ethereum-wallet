@@ -1,7 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js, Express, MongoDB](https://nextjs.org/) project bootstrapped with
 
-First, run the development server:
+First, install the dependancies:
+I used "bun" but any other runtime will work
 
 ```bash
-bun dev
+bun run postinstall
+```
+
+Then run backend and frontend servers separetly
+
+```bash
+bun run frontend
+```
+
+```bash
+bun run backend
 ```

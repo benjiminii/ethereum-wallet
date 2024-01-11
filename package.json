@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "install:frontend": "cd frontend && npm install",
-    "install:backend": "cd backend && npm install",
-    "postinstall": "npm run install:frontend && npm run install:backend",
-    "frontend": "cd frontend && npm run dev",
-    "backend": "cd backend && npm start",
-    "dev": "concurrently --kill-others \"npm run backend\" \"npm run frontend\""
+    "install:frontend": "cd frontend && bun i",
+    "install:backend": "cd backend && bun i",
+    "postinstall": "bun run install:frontend && bun run install:backend",
+    "frontend": "cd frontend && bun run dev",
+    "backend": "cd backend && bun start",
+    "dev": "concurrently --kill-others \"bun run backend\" \"bun run frontend\""
   }
 }
