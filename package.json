@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "install:client": "cd client && npm install",
-    "install:server": "cd server && npm install",
-    "postinstall": "npm run install:client && npm run install:server",
-    "client": "cd client && npm run dev",
-    "server": "cd server && npm start",
-    "dev": "concurrently --kill-others \"npm run server\" \"npm run client\""
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install",
+    "postinstall": "npm run install:frontend && npm run install:backend",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm start",
+    "dev": "concurrently --kill-others \"npm run backend\" \"npm run frontend\""
   }
 }
