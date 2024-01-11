@@ -14,16 +14,6 @@ function UserModal() {
   const { user } = userStore();
   const [loading, setLoading] = useState(false);
 
-  /* Form Initial Values */
-  const initialValues = {
-    firstName: user?.firstName || "",
-    lastName: user?.lastName || "",
-    birthday: user?.birthday || "",
-    gender: user?.gender || "MALE",
-    email: user?.email || "",
-    phoneNumber: user?.phoneNumber || "",
-  };
-
   const handleSubmit = async (values: any) => {
     setLoading(true);
     try {
@@ -51,18 +41,20 @@ function UserModal() {
       <div className="modal-box bg-main2 text-white">
         <h1 className="mb-5">User Info Form</h1>
         <Formik
-          initialValues={initialValues}
+          initialValues={{ ...user }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
+          enableReinitialize={true}
         >
-          {({ setFieldValue }) => (
+          {({ setFieldValue, values }) => (
             <Form className="flex flex-col items-center gap-6">
               <div className="grid grid-cols-1 justify-center gap-2 sm:grid-cols-2">
                 <div className={"w-full"}>
                   <InputField
                     label={"First Name"}
-                    id={"firstName"}
+                    name={"firstName"}
                     setFieldValue={setFieldValue}
+                    value={values.firstName}
                   />
                   <ErrorMessage
                     name="firstName"
@@ -73,8 +65,9 @@ function UserModal() {
                 <div className="">
                   <InputField
                     label={"Last Name"}
-                    id={"lastName"}
+                    name={"lastName"}
                     setFieldValue={setFieldValue}
+                    value={values.lastName}
                   />
                   <ErrorMessage
                     name="lastName"
@@ -86,7 +79,7 @@ function UserModal() {
                 <div className={""}>
                   <SelectField
                     label={"Gender"}
-                    id={"gender"}
+                    name={"gender"}
                     setFieldValue={setFieldValue}
                     options={["Male", "Female", "Other"]}
                   />
@@ -99,7 +92,7 @@ function UserModal() {
                 <div>
                   <DateField
                     label={"Birthday"}
-                    id={"birthday"}
+                    name={"birthday"}
                     setFieldValue={setFieldValue}
                   />
                   <ErrorMessage
@@ -111,7 +104,7 @@ function UserModal() {
                 <div className={"w-full"}>
                   <InputField
                     label={"Email"}
-                    id={"email"}
+                    name={"email"}
                     setFieldValue={setFieldValue}
                   />
                   <ErrorMessage
@@ -123,7 +116,7 @@ function UserModal() {
                 <div className="">
                   <InputField
                     label={"Phone Number"}
-                    id={"phoneNumber"}
+                    name={"phoneNumber"}
                     setFieldValue={setFieldValue}
                   />
                   <ErrorMessage

@@ -18,20 +18,20 @@ export default function Home() {
 
   async function getUserData(walletAddress: string) {
     const res = await fetchUser(walletAddress);
-    if (res && res[0]?.firstName) {
-      setUser(res[0]);
+    if (res && res?.firstName) {
+      setUser(res);
     } else openModal();
   }
 
   useEffect(() => {
-    const walletAddress = Cookies.get("wallet_nonce");
+    const walletAddress = Cookies.get("wallet_address");
     if (loggedIn && walletAddress) {
       getUserData(walletAddress);
     }
   }, [loggedIn]);
 
   useEffect(() => {
-    const walletAddress = Cookies.get("wallet_nonce");
+    const walletAddress = Cookies.get("wallet_address");
     if (walletAddress) {
       setLoggedIn(true);
       getUserData(walletAddress);

@@ -7,7 +7,7 @@
     "install:backend": "cd backend && bun i",
     "postinstall": "bun run install:frontend && bun run install:backend",
     "frontend": "cd frontend && bun run dev",
-    "backend": "cd backend && bun start",
+    "backend": "cd backend && bun run dev",
     "dev": "concurrently --kill-others \"bun run backend\" \"bun run frontend\""
   }
 }
