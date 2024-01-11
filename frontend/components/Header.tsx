@@ -5,10 +5,23 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { scrollAnimation } from "@/constants/motion.constant";
+import { authStore } from "@/store/authStore";
+import Cookies from "js-cookie";
+
+export const openModal = () =>
+  (document?.getElementById("user-modal") as HTMLDialogElement)?.showModal();
 
 function Header() {
-  const openModal = () =>
-    (document?.getElementById("user-modal") as HTMLDialogElement)?.showModal();
+  const { address, connectWallet, signin, loggedIn, setLoggedIn } = authStore();
+
+  function changeLoggingStatus() {
+    if (loggedIn) {
+      Cookies.remove("wallet_nonce");
+      Cookies.remove("wallet_address");
+      setLoggedIn(false);
+    } else if (address) signin();
+    else connectWallet();
+  }
 
   return (
     <header className="w-full py-2 px-3 md:px-6 ixed top-0 z-50  text-green1">
@@ -29,8 +42,12 @@ function Header() {
             <nav className="flex text-lg font-light">
               <ul className="flex space-x-3 md:space-x-10">
                 <li>
-                  <button className="btn bg-main2 text-white border-none hover:text-main1">
-                    Connect Wallet
+                  <button
+                    className="btn bg-main2 text-white border-none hover:text-main1"
+                    onClick={changeLoggingStatus}
+                  >
+                    {loggedIn && "Sign Out"}
+                    {!loggedIn && (address ? "Sign In" : "Connect Wallet")}
                   </button>
                 </li>
                 <li>

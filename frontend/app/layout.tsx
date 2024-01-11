@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Roboto } from "next/font/google";
+import ToasterProvider from "@/components/shared/ToastProviders";
 
 /* Robot Font */
 const roboto = Roboto({
@@ -20,7 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-black" data-theme="light">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <ToasterProvider />
+        {children}
+      </body>
     </html>
   );
 }

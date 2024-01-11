@@ -5,25 +5,44 @@ import * as Yup from "yup";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { DateField, InputField, SelectField } from "./shared";
+import { userStore } from "@/store/userStore";
+import { postUserInfo } from "@/services/userService";
+import Cookies from "js-cookie";
+import dayjs from "dayjs";
 
 function UserModal() {
+  const { user } = userStore();
   const [loading, setLoading] = useState(false);
+
+  /* Form Initial Values */
+  const initialValues = {
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
+    birthday: user?.birthday || "",
+    gender: user?.gender || "MALE",
+    email: user?.email || "",
+    phoneNumber: user?.phoneNumber || "",
+  };
 
   const handleSubmit = async (values: any) => {
     setLoading(true);
-    // try {
-    //   const res = await postData({
-    //     url: "/api/create-user-info",
-    //     data: values,
-    //   });
-    //   if (res.code == 0) {
-    //     closeModal();
-    //     toast.success("User info added");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   toast.success("Error occured. Please try again later");
-    // }
+    try {
+      const formattedBirthday = dayjs(values.birthday).format(
+        "YYYY-MM-DDTHH:mm:ss.SSSZ"
+      );
+      const res = await postUserInfo({
+        ...values,
+        birthday: formattedBirthday,
+        walletAddress: Cookies.get("wallet_address"),
+      });
+      if (res) {
+        closeModal();
+        toast.success("User info added");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.success("Error occured. Please try again later");
+    }
     setLoading(false);
   };
 
@@ -143,16 +162,6 @@ export default UserModal;
 /* Modal Close Function */
 const closeModal = () =>
   (document?.getElementById("user-modal") as HTMLDialogElement)?.close();
-
-/* Form Initial Values */
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  birthday: "",
-  gender: "male",
-  email: "",
-  phoneNumber: "",
-};
 
 /* Form Validation Schema */
 const validationSchema = Yup.object({

@@ -8,13 +8,14 @@ generator client {
 }
 
 model User {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  firstName   String
-  lastName    String
-  birthday    DateTime
-  gender      Gender
-  email       String   @unique
-  phoneNumber String
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  walletAddress String    @unique
+  firstName     String?
+  lastName      String?
+  birthday      DateTime?
+  email         String?
+  phoneNumber   String?
+  gender        Gender?
 }
 
 enum Gender {
