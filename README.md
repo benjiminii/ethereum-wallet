@@ -17,9 +17,8 @@ bun run frontend
 bun run backend
 ```
 
-I know it is a bad idea to leave you .env variables. But if it seems not be working please use these variables in the backend or contact me.
+If it seems not be working please contact me.
 
 ```bash
 PORT=5555
-DATABASE_URL="mongodb+srv://benjiminii:t19Bygj77H01%40@cluster0.unzli3v.mongodb.net/ethereum-wallet?retryWrites=true&w=majority"
 ```
