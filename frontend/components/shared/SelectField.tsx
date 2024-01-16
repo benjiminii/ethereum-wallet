@@ -1,8 +1,9 @@
 export default function SelectField({
   label,
-  id,
+  name,
   setFieldValue,
   options,
+  value,
 }: any) {
   return (
     <div className="form-control w-full max-w-xs">
@@ -11,10 +12,10 @@ export default function SelectField({
       </label>
       <select
         className="select-bordered select text-main2"
-        onChange={(e) => setFieldValue(id, e.target.value)}
+        onChange={(e) => setFieldValue(name, e.target.value)}
         defaultValue={"Pick one"}
       >
-        {options.map((option) => {
+        {options.map((option: string) => {
           return (
             <option key={option} value={option}>
               {option}

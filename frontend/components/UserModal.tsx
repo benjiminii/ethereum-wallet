@@ -20,10 +20,12 @@ function UserModal() {
       const formattedBirthday = dayjs(values.birthday).format(
         "YYYY-MM-DDTHH:mm:ss.SSSZ"
       );
+
       const res = await postUserInfo({
         ...values,
         birthday: formattedBirthday,
         walletAddress: Cookies.get("wallet_address"),
+        gender: values.gender.toUpperCase(),
       });
       if (res) {
         closeModal();
@@ -41,7 +43,14 @@ function UserModal() {
       <div className="modal-box bg-main2 text-white">
         <h1 className="mb-5">User Info Form</h1>
         <Formik
-          initialValues={{ ...user }}
+          initialValues={{
+            firstName: user?.firstName,
+            lastName: user?.lastName,
+            birthday: user?.birthday,
+            phoneNumber: user?.phoneNumber,
+            gender: user?.gender,
+            email: user?.email,
+          }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
           enableReinitialize={true}
@@ -82,6 +91,7 @@ function UserModal() {
                     name={"gender"}
                     setFieldValue={setFieldValue}
                     options={["Male", "Female", "Other"]}
+                    value={values.gender}
                   />
                   <ErrorMessage
                     name="gender"
@@ -94,6 +104,7 @@ function UserModal() {
                     label={"Birthday"}
                     name={"birthday"}
                     setFieldValue={setFieldValue}
+                    value={values.birthday}
                   />
                   <ErrorMessage
                     name="birthday"
@@ -106,6 +117,7 @@ function UserModal() {
                     label={"Email"}
                     name={"email"}
                     setFieldValue={setFieldValue}
+                    value={values.email}
                   />
                   <ErrorMessage
                     name="email"
@@ -118,6 +130,7 @@ function UserModal() {
                     label={"Phone Number"}
                     name={"phoneNumber"}
                     setFieldValue={setFieldValue}
+                    value={values.phoneNumber}
                   />
                   <ErrorMessage
                     name="phoneNumber"

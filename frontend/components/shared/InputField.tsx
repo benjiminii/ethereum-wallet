@@ -1,4 +1,4 @@
-export default function InputField({ label, id, setFieldValue }: any) {
+export default function InputField({ label, name, setFieldValue, value }: any) {
   return (
     <div className="form-control w-full max-w-xs">
       <label className="label text-white">
@@ -8,7 +8,8 @@ export default function InputField({ label, id, setFieldValue }: any) {
         type="text"
         placeholder="Type here"
         className="input-bordered input w-full max-w-xs text-main2"
-        onChange={(e) => setFieldValue(id, e.target.value)}
+        onChange={(e) => setFieldValue(name, e.target.value)}
+        value={value}
       />
     </div>
   );
